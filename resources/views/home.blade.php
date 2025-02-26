@@ -8,6 +8,12 @@
 
         @vite('resources/css/app.css')
         @vite('resources/js/app.js')
+
+        <style>
+            [x-cloak] {
+                display: none;
+            }
+        </style>
     </head>
 
     <body class="bg-blue-100 flex flex-col gap-4">
