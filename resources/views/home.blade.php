@@ -7,6 +7,7 @@
         <title>Name</title>
 
         @vite('resources/css/app.css')
+        @vite('resources/js/app.js')
     </head>
 
     <body class="bg-blue-100 flex flex-col gap-4">
