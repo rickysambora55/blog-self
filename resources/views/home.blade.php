@@ -19,6 +19,7 @@
     <body class="bg-blue-100 flex flex-col gap-4">
         <x-navbar></x-navbar>
         <x-hero></x-hero>
+        <x-intro></x-intro>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos veritatis veniam dolores consectetur id
         perspiciatis placeat earum similique iure deleniti, sint tempora quibusdam voluptatum facere sunt laudantium!
         Nobis error minus odit eos, ad animi fugiat dolorum temporibus dicta, quos cupiditate ipsa officiis nam
