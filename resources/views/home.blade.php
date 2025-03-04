@@ -14,9 +14,15 @@
                 display: none;
             }
         </style>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+            rel="stylesheet">
     </head>
 
-    <body class="bg-blue-100 flex flex-col gap-4">
+    <body class="flex flex-col gap-4">
         <x-navbar></x-navbar>
         <x-hero></x-hero>
         <x-intro></x-intro>
