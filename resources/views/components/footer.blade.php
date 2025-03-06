@@ -1,4 +1,4 @@
-<footer class="w-full bg-amber-500 text-white py-6">
+<footer id="contact" class="w-full bg-amber-500 text-white py-6">
     <div class="container mx-auto px-6 flex flex-col items-center gap-4">
         <!-- Social Media Icons -->
         <div class="flex gap-4">
@@ -47,16 +47,16 @@
     document.addEventListener("DOMContentLoaded", function () {
         const backToTop = document.getElementById("backToTop");
 
-        // Show button when scrolling down
-        window.addEventListener("scroll", function () {
-            if (window.scrollY > 300) { // Adjust visibility threshold
-                backToTop.classList.remove("opacity-0", "invisible");
-                backToTop.classList.add("opacity-100", "visible");
-            } else {
-                backToTop.classList.remove("opacity-100", "visible");
-                backToTop.classList.add("opacity-0", "invisible");
-            }
-        });
+        // // Show button when scrolling down
+        // window.addEventListener("scroll", function () {
+        //     if (window.scrollY > 300) {
+        //         backToTop.classList.remove("opacity-0", "invisible");
+        //         backToTop.classList.add("opacity-100", "visible");
+        //     } else {
+        //         backToTop.classList.remove("opacity-100", "visible");
+        //         backToTop.classList.add("opacity-0", "invisible");
+        //     }
+        // });
 
         // Smooth scroll to top
         backToTop.addEventListener("click", function () {

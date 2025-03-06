@@ -1,5 +1,5 @@
 <x-section-wrapper-wide>
-    <x-slot:section>projects</x-slot:section>
+    <x-slot:section>experiences</x-slot:section>
     <div class="w-full">
         <div class="w-full flex justify-center">
             <x-section-title>Background & Experiences</x-section-title>

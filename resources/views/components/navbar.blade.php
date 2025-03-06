@@ -8,9 +8,9 @@
                 </a> --}}
                 <ul class="flex gap-10">
                     <x-nav-item href="{{ url('/') }}">Home</x-nav-item>
-                    <x-nav-item href="{{ url('#skill') }}">Skill</x-nav-item>
-                    <x-nav-item href="{{ url('#resume') }}">Resume</x-nav-item>
-                    <x-nav-item href="{{ url('#project') }}">Project</x-nav-item>
+                    <x-nav-item href="{{ url('#skills') }}">Skills</x-nav-item>
+                    <x-nav-item href="{{ url('#experiences') }}">Experiences</x-nav-item>
+                    <x-nav-item href="{{ url('#projects') }}">Projects</x-nav-item>
                     <x-nav-item href="{{ url('#contact') }}">Contact</x-nav-item>
                 </ul>
             </div>
