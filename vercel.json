@@ -6,8 +6,18 @@
     },
     "routes": [
         {
+            "src": "/(.*)\\.(css|js|png|jpg|jpeg|gif|ico|svg|woff2|ttf|otf|eot|mp4|webm|wav|mp3|m4a|ogg|oga)",
+            "dest": "/public/$1.$2"
+        },
+        {
             "src": "/(.*)",
             "dest": "/api/index.php"
+        }
+    ],
+    "builds": [
+        {
+            "src": "public/**/*",
+            "use": "@vercel/static"
         }
     ],
     "env": {
