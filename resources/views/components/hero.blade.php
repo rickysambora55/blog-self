@@ -1,4 +1,4 @@
-<section class="w-full h-184 px-16 bg-gray-100" id="home">
+<section class="w-full h-184 px-32 bg-gray-100" id="home">
     <div class="container h-full py-24 flex flex-col md:flex-row gap-8 mx-auto items-center">
         <div class="flex flex-col w-full justify-center text-center md:text-left">
             <span class="text-2xl">Hi, I'm</span>
