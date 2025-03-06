@@ -1,4 +1,4 @@
-<x-section-wrapper-wide class="bg-gradient-to-b from-orange-200 to-orange-100">
+<x-section-wrapper-wide class="bg-gradient-to-b from-amber-200 to-amber-100">
     <x-slot:section>skills</x-slot:section>
     <div class="w-full">
         <div class="w-full flex justify-center">
