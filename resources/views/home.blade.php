@@ -27,6 +27,7 @@
         <x-hero></x-hero>
         <x-intro></x-intro>
         <x-skills></x-skills>
+        <x-experiences></x-experiences>
         <x-projects></x-projects>
         {{-- <x-contact></x-contact> --}}
         <x-footer></x-footer>
