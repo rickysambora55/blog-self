@@ -14,12 +14,6 @@
             "dest": "/api/index.php"
         }
     ],
-    "builds": [
-        {
-            "src": "public/**/*",
-            "use": "@vercel/static"
-        }
-    ],
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",
