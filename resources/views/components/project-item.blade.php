@@ -22,10 +22,10 @@
             <div class="w-full h-0.5 bg-gray-300 mx-auto my-2 rounded-full"></div>
 
             <!-- Tech Stack -->
-            <div class="flex gap-2">
-                <x-projects-tech src="/img/nodejs.webp">Node.js</x-projects-tech>
-                <x-projects-tech src="/img/discordjs.webp">Discord.js</x-projects-tech>
-                <x-projects-tech src="/img/mysql.webp">MySQL</x-projects-tech>
+            <div class="flex gap-3">
+                <x-tech-item src="/img/nodejs.webp">Node.js</x-tech-item>
+                <x-tech-item src="/img/discordjs.webp">Discord.js</x-tech-item>
+                <x-tech-item src="/img/mysql.webp">MySQL</x-tech-item>
             </div>
         </div>
 

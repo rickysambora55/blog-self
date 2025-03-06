@@ -1,0 +1,1 @@
+<img {{$attributes}} alt="{{$slot}}" class="w-8 h-8">

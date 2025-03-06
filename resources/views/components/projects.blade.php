@@ -6,14 +6,14 @@
         </div>
 
         <div class="w-full 2xl:px-2 flex flex-wrap justify-evenly gap-8 mt-6">
-            <x-project></x-project>
-            <x-project></x-project>
-            <x-project></x-project>
-            <x-project></x-project>
-            <x-project></x-project>
-            <x-project></x-project>
-            <x-project></x-project>
-            <x-project></x-project>
+            <x-project-item></x-project-item>
+            <x-project-item></x-project-item>
+            <x-project-item></x-project-item>
+            <x-project-item></x-project-item>
+            <x-project-item></x-project-item>
+            <x-project-item></x-project-item>
+            <x-project-item></x-project-item>
+            <x-project-item></x-project-item>
         </div>
 
     </div>
