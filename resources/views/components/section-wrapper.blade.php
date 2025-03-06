@@ -1,5 +1,5 @@
-<section {{$attributes}} class="w-full px-24" id={{$section}}>
-    <div class="container h-full py-12 flex flex-col md:flex-row gap-24 mx-auto items-center">
+<section {{$attributes}} class="w-full" id={{$section}}>
+    <div class="container h-full mx-24 py-12 flex flex-col md:flex-row gap-24 mx-auto items-center">
         {{$slot}}
     </div>
 </section>
