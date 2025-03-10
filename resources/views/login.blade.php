@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login Form</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
+    @extends('head')
 
     <body
         class="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500">
