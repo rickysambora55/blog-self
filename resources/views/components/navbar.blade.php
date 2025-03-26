@@ -1,6 +1,6 @@
 <header class="fixed w-full top-0 z-999">
-    <nav class="bg-white p-6 container rounded-b-xl ml-auto mr-auto">
-        <div class="w-full flex justify-between">
+    <nav class="bg-white p-6 px-12 w-full max-w-312 ml-auto mr-auto rounded-b-xl drop-shadow">
+        <div class="container flex justify-between ml-auto mr-auto">
             <div class="w-full flex gap-10">
                 {{-- <a href="{{ url('/') }}">
                     <img src="{{ asset('logo.png') }}" alt="Logo" class="h-12 w-auto">
@@ -8,10 +8,12 @@
                 </a> --}}
                 <ul class="flex gap-10">
                     <x-nav-item href="{{ url('/') }}">Home</x-nav-item>
+                    @if(Request::is('/'))
                     <x-nav-item href="{{ url('#skills') }}">Skills</x-nav-item>
                     <x-nav-item href="{{ url('#experiences') }}">Experiences</x-nav-item>
                     <x-nav-item href="{{ url('#projects') }}">Projects</x-nav-item>
                     <x-nav-item href="{{ url('#contact') }}">Contact</x-nav-item>
+                    @endif
                 </ul>
             </div>
             <div class="flex items-center">

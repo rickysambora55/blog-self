@@ -5,7 +5,7 @@
 
     <body class="flex flex-col gap-4 min-h-screen">
         <x-navbar></x-navbar>
-        <article class="flex flex-col flex-grow p-12 mt-4">
+        <article class="flex flex-col flex-grow p-12 mt-12">
             <div class="my-6 flex flex-col">
                 <span class="font-bold text-3xl">{{$project['title']}}</span>
                 <span class="text-md text-gray-700">{{$project['type']}}</span>
