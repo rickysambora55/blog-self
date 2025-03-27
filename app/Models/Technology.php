@@ -12,4 +12,9 @@ class Technology extends Model
     {
         return $this->belongsToMany(Project::class, 'project_technologies')->withTimestamps();
     }
+
+    public function profiles()
+    {
+        return $this->belongsToMany(Profile::class, 'profile_technologies')->withTimestamps();
+    }
 }

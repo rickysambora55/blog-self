@@ -27,6 +27,16 @@ return new class extends Migration
 
             $table->unique(['project_id', 'technology_id']);
         });
+
+        Schema::create('profile_technologies', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('profile_id')->references('id')->on('profiles')->onDelete('cascade');
+            $table->foreignId('technology_id')->references('id')->on('technologies')->onDelete('restrict');
+            $table->timestamps();
+
+
+            $table->unique(['profile_id', 'technology_id']);
+        });
     }
 
     /**
@@ -35,6 +45,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('project_technologies');
+        Schema::dropIfExists('profile_technologies');
         Schema::dropIfExists('technologies');
     }
 };
