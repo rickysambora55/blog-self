@@ -14,11 +14,14 @@ return new class extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->string('name', 128);
+            $table->string('email', 255)->unique();
             $table->string('title', 255);
             $table->text('bio');
-            $table->string('location');
-            $table->string('website');
-            $table->string('github_username');
+            $table->string('location')->nullable();
+            $table->string('website')->nullable();
+            $table->string('github_username')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('instagram')->nullable();
             $table->timestamps();
         });
     }

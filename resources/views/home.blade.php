@@ -11,7 +11,7 @@
         <x-experiences :works="$works" :studies="$studies"></x-experiences>
         <x-projects :projects="$projects"></x-projects>
         {{-- <x-contact></x-contact> --}}
-        <x-footer></x-footer>
+        <x-footer :profile="$profile"></x-footer>
     </body>
 
 </html>
