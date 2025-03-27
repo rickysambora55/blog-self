@@ -1,12 +1,14 @@
 <?php
 
 use App\Models\Project;
+use App\Models\Profile;
 use App\Models\Experience;
 use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
 
 Route::get('/', function () {
     $projects = Project::latest()->take(8)->get();
+    $profile = Profile::firstOrFail();
     $experience = Experience::all()
     ->map(function ($exp) {
         $start = Carbon::parse($exp->start_date);
@@ -33,6 +35,7 @@ Route::get('/', function () {
 
     return view('home', [
         'projects' => $projects,
+        'profile' => $profile,
         'works' => $works,
         'studies' => $studies
     ]);

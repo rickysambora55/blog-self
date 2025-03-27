@@ -1,3 +1,5 @@
+@props(['profile'])
+
 <x-section-wrapper>
     <x-slot:section>intro</x-slot:section>
     <div class="w-full max-w-1/3">
@@ -10,10 +12,7 @@
         <x-section-title>About Me</x-section-title>
 
         <div class="text-justify">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias deleniti expedita nesciunt nam quibusdam
-            quam similique molestiae tempore quae delectus minus tempora cumque provident facere, fugit esse facilis
-            animi, sunt earum praesentium. Nobis dicta esse eaque fuga ea eveniet at, deleniti laborum labore, sit
-            nostrum suscipit cupiditate, magni asperiores praesentium?
+            {{$profile['bio']}}
         </div>
     </div>
 </x-section-wrapper>
