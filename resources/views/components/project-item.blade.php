@@ -5,7 +5,7 @@
         class="w-70 2xl:w-84 h-84 p-4 rounded-xl overflow-hidden group border border-gray-100 shadow-lg cursor-pointer hover:shadow-xl hover:shadow-amber-200 transition flex flex-col">
 
         <!-- Image -->
-        <img class="w-full rounded-t-lg h-36 object-cover" src="/projects/{{$images[0]['filename']}}"
+        <img class="w-full rounded-t-lg h-36 object-cover" src="/img/projects/{{$images[0]['filename']}}"
             alt="{{$images[0]['alt']}}">
 
         <!-- Content Wrapper -->

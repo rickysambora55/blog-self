@@ -13,6 +13,6 @@ class Project extends Model
     }
 
     public function technologies() {
-        return $this->belongsToMany(Technology::class, 'project_technologies');
+        return $this->belongsToMany(Technology::class, 'project_technologies')->withTimestamps();
     }
 }

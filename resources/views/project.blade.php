@@ -5,16 +5,16 @@
 
     <body class="flex flex-col gap-4 min-h-screen">
         <x-navbar></x-navbar>
-        <article class="flex flex-col flex-grow p-12 mt-12">
+        <article class="flex flex-col p-12 mt-12 container mx-auto justify-between">
             <div class="my-6 flex flex-col">
                 <span class="font-bold text-3xl">{{$project['title']}}</span>
                 <span class="text-md text-gray-700">{{$project['type']}}</span>
             </div>
-            <div class="grid grid-cols-4 gap-6">
+            <div class="grid grid-cols-4 gap-12">
                 <div class="col-span-full md:col-span-3 flex flex-col">
                     <div>
                         <div x-data="{
-                            slides: {{ json_encode($project['images']) }},
+                            slides: {{ json_encode($project->images->map(fn($image) => ['filename' => '/img/projects/' . $image->filename, 'alt' => $image->alt ?? 'Project image' ])) }},
                             currentSlideIndex: 1,
                             previous() {
                                 if (this.currentSlideIndex > 1) {
@@ -57,7 +57,7 @@
                             </button>
 
                             <!-- slides -->
-                            <div class="relative min-h-[70svh] w-full">
+                            <div class="relative bg-black h-72 md:92 lg:h-108 xl:h-128 w-full">
                                 <template x-for="(slide, index) in slides">
                                     <div x-show="currentSlideIndex == index + 1" class="absolute inset-0"
                                         x-transition.opacity.duration.1000ms>
@@ -111,7 +111,9 @@
                         </ul> --}}
                     </div>
                 </div>
+            </div>
         </article>
+        <div class="flex flex-grow"></div>
         <x-footer></x-footer>
     </body>
 

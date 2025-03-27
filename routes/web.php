@@ -4,13 +4,11 @@ use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home', ['projects' => Project::all()]);
+    $projects = Project::latest()->take(8)->get();
+    return view('home', ['projects' => $projects]);
 });
 
-Route::get('/project/{slug}', function ($slug) {
-    $project = Arr::first(Project::all(), function ($project) use ($slug) {
-        return $project['slug'] == $slug;
-    });
+Route::get('/project/{project:slug}', function (Project $project) {
 
     return view('project', ['project' => $project]);
 });
