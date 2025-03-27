@@ -8,7 +8,7 @@
         <x-hero></x-hero>
         <x-intro></x-intro>
         <x-skills></x-skills>
-        <x-experiences></x-experiences>
+        <x-experiences :works="$works" :studies="$studies"></x-experiences>
         <x-projects :projects="$projects"></x-projects>
         {{-- <x-contact></x-contact> --}}
         <x-footer></x-footer>
