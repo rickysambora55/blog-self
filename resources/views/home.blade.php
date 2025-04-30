@@ -4,7 +4,7 @@
     @extends('head')
 
     <body class="flex flex-col gap-4">
-        <x-navbar></x-navbar>
+        <x-navbar :profile="$profile" :works="$works" :studies="$studies" :projects="$projects"></x-navbar>
         <x-hero :profile="$profile"></x-hero>
         <x-intro :profile="$profile"></x-intro>
         @if(isset($profile['technologies']))
