@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email', 255)->unique();
             $table->string('title', 255);
             $table->text('bio');
+            $table->string('filename1')->unique();
+            $table->string('filename2')->unique();
             $table->string('location')->nullable();
             $table->string('website')->nullable();
             $table->string('github_username')->nullable();

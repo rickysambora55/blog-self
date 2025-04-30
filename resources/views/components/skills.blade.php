@@ -8,9 +8,11 @@
         </div>
 
         <div class="w-full flex flex-wrap justify-center gap-10 mt-6">
+            @if (isset($profile['technologies']) && is_array($profile['technologies']))
             @foreach ($profile['technologies'] as $skill)
             <x-skills-item src="/img/tech/{{$skill['filename']}}">{{$skill['name']}}</x-skills-item>
             @endforeach
+            @endif
         </div>
     </div>
 </x-section-wrapper-wide>

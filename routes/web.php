@@ -8,25 +8,37 @@ use Carbon\Carbon;
 
 Route::get('/', function () {
     $projects = Project::latest()->take(8)->get();
-    $profile = Profile::firstOrFail();
-    $experience = Experience::all()
-    ->map(function ($exp) {
-        $start = Carbon::parse($exp->start_date);
-        $end = $exp->end_date ? Carbon::parse($exp->end_date) : now();
+    $profile = Profile::first();
 
-        return [
-            'title' => $exp->title,
-            'type' => $exp->type,
-            'company' => $exp->company,
-            'description' => $exp->description,
-            'start_date' => $start,
-            'end_date' => $end,
-            'formatted_date' => $start->translatedFormat('d M Y') . ' - ' .
-                                ($exp->end_date ? $end->translatedFormat('d M Y') : 'Now') .
-                                ' (' . $start->diffForHumans($end, true) . ')',
+    // If profile is not set, send default profile
+    if (!$profile) {
+        $profile = [
+            'name' => 'John Doe',
+            'title' => 'Web Developer',
+            'bio' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.',
+            'filename1' => 'Person_Hero.webp',
+            'filename2' => 'Person_2.webp'
         ];
-    })
-    ->sortByDesc(fn ($exp) => $exp['end_date']->timestamp);
+    }
+
+    $experience = Experience::all()
+        ->map(function ($exp) {
+            $start = Carbon::parse($exp->start_date);
+            $end = $exp->end_date ? Carbon::parse($exp->end_date) : now();
+
+            return [
+                'title' => $exp->title,
+                'type' => $exp->type,
+                'company' => $exp->company,
+                'description' => $exp->description,
+                'start_date' => $start,
+                'end_date' => $end,
+                'formatted_date' => $start->translatedFormat('d M Y') . ' - ' .
+                    ($exp->end_date ? $end->translatedFormat('d M Y') : 'Now') .
+                    ' (' . $start->diffForHumans($end, true) . ')',
+            ];
+        })
+        ->sortByDesc(fn($exp) => $exp['end_date']->timestamp);
 
 
     [$works, $studies] = $experience->partition(function ($exp) {
