@@ -14,18 +14,20 @@
                 <div
                     class="h-full px-3 py-8 overflow-y-auto sidebar-scroll bg-gradient-to-br from-amber-300 via-amber-200 to-amber-300">
                     <ul class=" flex flex-col gap-1">
-                        <x-sidebar-item icon="fa-house" label="Dashboard" route="{{ route('dashboard') }}"
-                            :active="Route::is('dashboard')" />
-                        <x-sidebar-item icon="fa-user" label="Profile" route="{{ route('profile') }}"
-                            :active="Route::is('profile')" />
-                        <x-sidebar-item icon="fa-diagram-project" label="Project" route="{{ route('dashboard') }}"
-                            :active="Route::is('dashboard')" />
+                        <x-sidebar-item icon="fa-house" label="Dashboard" route="{{ route('admin') }}"
+                            :active="Route::is('admin')" />
+                        <x-sidebar-item icon="fa-user" label="Profile" route="{{ route('admin-profile') }}"
+                            :active="Route::is('admin-profile')" />
+                        <x-sidebar-item icon="fa-diagram-project" label="Project" route="{{ route('admin-project') }}"
+                            :active="Route::is('admin-project')" />
                         <x-sidebar-item-collapsible icon="fa-building" label="Experience" :items="[
-                            ['route' => route('dashboard'), 'text' => 'Work', 'active' => Route::is('dashboard')],
-                            ['route' => route('dashboard'), 'text' => 'Education', 'active' => Route::is('dashboard')],
+                            ['route' => route('admin'), 'text' => 'Work', 'active' => Route::is('admin')],
+                            ['route' => route('admin'), 'text' => 'Education', 'active' => Route::is('admin')],
                         ]" />
+                        <x-sidebar-item icon="fa-hand" label="Social Media" route="{{ route('admin-social') }}"
+                            :active="Route::is('admin-social')" />
                         <span class="font-medium mt-4">Database</span>
-                        <x-sidebar-item icon="fa-cubes" label="Technology" route="{{ route('dashboard') }}" />
+                        <x-sidebar-item icon="fa-cubes" label="Technology" route="{{ route('admin') }}" />
                     </ul>
                 </div>
             </aside>

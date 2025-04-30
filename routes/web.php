@@ -64,7 +64,7 @@ Route::get('/login', function () {
 
 Route::get('/admin', function () {
     return view('admin');
-})->name('dashboard');
+})->name('admin');
 
 Route::get('/admin/profile', function () {
     $profile = Profile::first();
@@ -74,5 +74,22 @@ Route::get('/admin/profile', function () {
         $profile = [];
     }
 
-    return view('profile', ['profile' => $profile]);
-})->name('profile');
+    return view('admin-profile', ['profile' => $profile]);
+})->name('admin-profile');
+
+Route::get('/admin/social', function () {
+    $profile = Profile::first();
+
+    // If profile is not set, send default profile
+    if (!$profile) {
+        $profile = [];
+    }
+
+    return view('admin-social', ['profile' => $profile]);
+})->name('admin-social');
+
+Route::get('/admin/project', function () {
+    $projects = Project::all();
+
+    return view('admin-project', ['projects' => $projects]);
+})->name('admin-project');
