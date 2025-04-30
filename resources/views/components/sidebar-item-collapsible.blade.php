@@ -1,7 +1,7 @@
 @props([
 'icon' => 'fa-house',
 'label' => 'Menu',
-'items' => [], // ['route' => '#', 'text' => 'Submenu']
+'items' => [], // ['route' => '#', 'text' => 'Submenu', 'active' => 'false']
 ])
 
 <li x-data="{ open: false }">
@@ -16,7 +16,7 @@
         @foreach ($items as $item)
         <li>
             <a href="{{ $item['route'] }}"
-                class="flex items-center w-full p-2 pl-8 text-gray-900 transition duration-75 rounded-lg group hover:bg-amber-100/50 dark:text-white dark:hover:bg-gray-700 gap-3">
+                class="{{ $item['active'] ? 'bg-amber-400 text-black font-semibold' : '' }} flex items-center w-full p-2 pl-8 text-gray-900 transition duration-75 rounded-lg group hover:bg-amber-100/50 dark:text-white dark:hover:bg-gray-700 gap-3">
                 <i class="fa-solid fa-o text-xs w-4 h-2 text-center"></i>
                 {{ $item['text'] }}
             </a>

@@ -65,3 +65,14 @@ Route::get('/login', function () {
 Route::get('/admin', function () {
     return view('admin');
 })->name('dashboard');
+
+Route::get('/admin/profile', function () {
+    $profile = Profile::first();
+
+    // If profile is not set, send default profile
+    if (!$profile) {
+        $profile = [];
+    }
+
+    return view('profile', ['profile' => $profile]);
+})->name('profile');

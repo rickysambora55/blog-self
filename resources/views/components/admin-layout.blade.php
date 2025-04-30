@@ -2,7 +2,7 @@
 <html lang="en">
     @extends('head')
 
-    <body x-data="{ sidebarOn: window.innerWidth >= 640 }"
+    <body class="overflow-y-scroll" x-data="{ sidebarOn: window.innerWidth >= 640 }"
         @resize.window="if (window.innerWidth >= 640) {sidebarOn = true} else {sidebarOn = false}">
         <div class="relative z-50" @click.outside="sidebarOn = false" x-show="sidebarOn || window.innerWidth >= 640"
             x-transition:enter="transition duration-200" x-transition:enter-start="-translate-x-full"
@@ -14,12 +14,15 @@
                 <div
                     class="h-full px-3 py-8 overflow-y-auto sidebar-scroll bg-gradient-to-br from-amber-300 via-amber-200 to-amber-300">
                     <ul class=" flex flex-col gap-1">
-                        <x-sidebar-item icon="fa-house" label="Dashboard" route="{{ route('dashboard') }}" />
-                        <x-sidebar-item icon="fa-user" label="Profile" route="{{ route('dashboard') }}" />
-                        <x-sidebar-item icon="fa-diagram-project" label="Project" route="{{ route('dashboard') }}" />
+                        <x-sidebar-item icon="fa-house" label="Dashboard" route="{{ route('dashboard') }}"
+                            :active="Route::is('dashboard')" />
+                        <x-sidebar-item icon="fa-user" label="Profile" route="{{ route('profile') }}"
+                            :active="Route::is('profile')" />
+                        <x-sidebar-item icon="fa-diagram-project" label="Project" route="{{ route('dashboard') }}"
+                            :active="Route::is('dashboard')" />
                         <x-sidebar-item-collapsible icon="fa-building" label="Experience" :items="[
-                            ['route' => route('dashboard'), 'text' => 'Work'],
-                            ['route' => route('dashboard'), 'text' => 'Education'],
+                            ['route' => route('dashboard'), 'text' => 'Work', 'active' => Route::is('dashboard')],
+                            ['route' => route('dashboard'), 'text' => 'Education', 'active' => Route::is('dashboard')],
                         ]" />
                         <span class="font-medium mt-4">Database</span>
                         <x-sidebar-item icon="fa-cubes" label="Technology" route="{{ route('dashboard') }}" />
@@ -31,13 +34,26 @@
         <div class="sm:ml-64">
             <div class="sticky w-full px-8 py-6 top-0 bg-white shadow-md">
                 <div class="container flex justify-between">
-                    <div class="w-full flex">
+                    <div class="w-full flex gap-6">
                         <button data-drawer-target="sidebar-menu" data-drawer-toggle="sidebar-menu"
                             aria-controls="sidebar-menu" type="button" @click="sidebarOn = !sidebarOn"
-                            class="inline-flex items-center p-0 text-gray-500 sm:hidden hover:cursor-pointer hover:text-gray-400">
+                            class="inline-flex items-center p-0 text-gray-600 sm:hidden hover:cursor-pointer hover:text-gray-400">
                             <span class="sr-only">Open sidebar</span>
-                            <i class="fa-solid fa-bars"></i>
+                            <i class="fa-solid fa-bars text-xl"></i>
                         </button>
+                        <div class="flex items-center text-gray-400 gap-2">
+                            Dashboard
+                            @if (Request::segment(2))
+                            <span class="font-light">/</span>
+                            <span class="{{ Request::segment(3) ? 'text-gray-400' : 'text-black' }}">
+                                {{ ucfirst(Request::segment(2)) }}
+                            </span>
+                            @endif
+                            @if (Request::segment(3))
+                            <span class="font-light">/</span>
+                            <span class="text-black">{{ ucfirst(Request::segment(3)) }}</span>
+                            @endif
+                        </div>
                     </div>
                     <div class="flex items-center">
                         <div class="relative inline-block text-left" x-data="{ isOn: false }"
