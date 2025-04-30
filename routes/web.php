@@ -61,3 +61,7 @@ Route::get('/project/{project:slug}', function (Project $project) {
 Route::get('/login', function () {
     return view('login');
 });
+
+Route::get('/admin', function () {
+    return view('admin');
+})->name('dashboard');
