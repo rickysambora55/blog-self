@@ -17,6 +17,25 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Color */
+.primary {
+    background-color: oklch(76.9% 0.188 70.08);
+    color: white;
+}
+
+.primary:hover {
+    background-color: oklch(82.8% 0.189 84.429);
+}
+
+.secondary {
+    background-color: oklch(54.6% 0.245 262.881);
+    color: white;
+}
+
+.secondary:hover {
+    background-color: oklch(70.7% 0.165 254.624);
+}
+
 .sidebar-scroll::-webkit-scrollbar {
     width: 8px;
 }
