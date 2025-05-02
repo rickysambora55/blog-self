@@ -11,7 +11,7 @@
         <!-- Content Wrapper -->
         <div class="flex flex-col flex-1 px-2">
             <div class="pt-2">
-                <div class="font-bold text-xl group-hover:text-amber-400 transition">{{$title}}</div>
+                <div class="font-bold text-xl group-hover:text-amber-400 line-clamp-1 transition">{{$title}}</div>
                 <div class="text-gray-700 text-xs">{{$type}}</div>
 
                 <!-- Truncated Description -->

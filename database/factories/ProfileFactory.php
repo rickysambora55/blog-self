@@ -24,7 +24,7 @@ class ProfileFactory extends Factory
             'name' => $name,
             'email' => fake()->unique()->safeEmail(),
             'title' => fake()->jobTitle(),
-            'bio' => fake()->paragraph(),
+            'bio' => fake()->paragraph(12),
             'filename1' => 'Person_Hero.webp',
             'filename2' => 'Person_2.webp',
             'address' => fake()->city(),
