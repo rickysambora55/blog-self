@@ -7,7 +7,7 @@
         <x-navbar :profile="$profile" :works="$works" :studies="$studies" :projects="$projects"></x-navbar>
         <x-hero :profile="$profile"></x-hero>
         <x-intro :profile="$profile"></x-intro>
-        @if(isset($profile['technologies']))
+        @if(isset($profile['technologies']) && $profile['technologies']->isNotEmpty())
         <x-skills :profile="$profile"></x-skills>
         @endif
         @if((isset($works) && $works->isNotEmpty()) || (isset($studies) && $studies->isNotEmpty()))

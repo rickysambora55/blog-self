@@ -19,9 +19,10 @@ return new class extends Migration
             $table->text('bio');
             $table->string('filename1')->unique();
             $table->string('filename2')->unique();
-            $table->string('location')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
             $table->string('website')->nullable();
-            $table->string('github_username')->nullable();
+            $table->string('github')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('instagram')->nullable();
             $table->timestamps();

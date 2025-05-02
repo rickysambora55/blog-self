@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ProjectImage extends Model
 {
-    protected $fillable = ['project_id', 'filename', 'alt'];
+    use HasFactory;
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public function project() {
+    public function project()
+    {
         return $this->belongsTo(Project::class);
     }
 }

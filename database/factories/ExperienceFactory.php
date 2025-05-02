@@ -21,8 +21,8 @@ class ExperienceFactory extends Factory
             'title' => $isExperience ? fake()->jobTitle() : fake()->sentence(3),
             'type' => $isExperience,
             'company' => $isExperience ? fake()->company() : fake()->word() . ' University',
-            'start_date' => fake()->date(),
-            'end_date' => fake()->optional()->date(),
+            'start_date' => $start = fake()->dateTimeBetween('-10 years', '-1 year'),
+            'end_date' => fake()->optional()->dateTimeBetween($start, null),
             'description' => fake()->paragraph(),
         ];
     }

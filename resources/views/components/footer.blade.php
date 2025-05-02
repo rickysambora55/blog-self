@@ -33,11 +33,17 @@
             </x-social-item>
         </div>
         <div class="flex flex-col text-center">
-            @if(isset($profile['email']))
-            <span class="text-sm">{{$profile['email']}}</span>
-            @endif
-            @if(isset($profile['location']))
-            <span class="text-sm">{{$profile['location']}}</span>
+            <div class="flex gap-2">
+                @if(isset($profile['email']))
+                <span class="text-sm">{{$profile['email']}}</span>
+                @endif
+                @if(isset($profile['phone']))
+                <div class="border border-b-12 border-white"></div>
+                <span class="text-sm">{{$profile['phone']}}</span>
+                @endif
+            </div>
+            @if(isset($profile['address']))
+            <span class="text-sm">{{$profile['address']}}</span>
             @endif
         </div>
 

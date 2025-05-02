@@ -2,7 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Experience;
+use App\Models\Profile;
+use App\Models\Project;
+use App\Models\ProjectImage;
+use App\Models\Technology;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,11 +17,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call([TechnologySeeder::class]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $maxTechnologies = Technology::count();
+
+        Experience::factory(7)->create();
+
+        $profile = Profile::factory()->create();
+
+        $profile->technologies()->attach(
+            Technology::all()->random(rand($maxTechnologies / 2, $maxTechnologies))->pluck('id')->toArray()
+        );
+
+        $projects = Project::factory(10)->has(ProjectImage::factory(1), 'images')->create();
+
+        foreach ($projects as $project) {
+            $project->technologies()->attach(
+                Technology::all()->random(rand(1, 3))->pluck('id')->toArray()
+            );
+        }
     }
 }

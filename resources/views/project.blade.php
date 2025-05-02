@@ -93,7 +93,7 @@
                         <span class="font-bold text-xl">Technologies Used</span>
                         <div class="flex gap-2 flex-wrap">
                             @foreach ($project['technologies'] as $tech)
-                            <x-tech-item src="/img/tech/{{$tech['filename']}}.webp">
+                            <x-tech-item src="/img/tech/{{$tech['filename']}}">
                                 {{$tech['name']}}
                             </x-tech-item>
                             @endforeach
