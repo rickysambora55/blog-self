@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    @extends('head')
+    <x-header></x-header>
 
     <body
         class="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-100 via-gray-200 to-amber-100">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    @extends('head')
+    <x-header></x-header>
 
     <body class="flex flex-col gap-4 min-h-screen">
         <x-navbar></x-navbar>

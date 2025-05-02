@@ -24,16 +24,14 @@
                 <div class="flex flex-col gap-2">
                     <label for="bio">Bio</label>
                     <textarea rows="4" name="bio" id="bio" aria-label="Bio"
-                        class="p-2 border border-gray-300 rounded-md"
-                        value="{{ isset($profile['bio']) ? $profile['bio'] : ''}}"
-                        placeholder="Tell us a little about yourself"></textarea>
+                        class="p-2 border border-gray-300 rounded-md" placeholder="Tell us a little about yourself">{{ isset($profile['bio']) ? $profile['bio'] : ''}}
+                    </textarea>
                 </div>
                 <div class="flex flex-col gap-2">
                     <label for="address">Address</label>
                     <textarea rows="2" name="address" id="address" aria-label="Address"
-                        class="p-2 border border-gray-300 rounded-md"
-                        value="{{ isset($profile['address']) ? $profile['address'] : ''}}"
-                        placeholder="Sumpah Pemuda Street, Jakarta"></textarea>
+                        class="p-2 border border-gray-300 rounded-md" placeholder="Sumpah Pemuda Street, Jakarta">{{ isset($profile['address']) ? $profile['address'] : ''}}
+                    </textarea>
                 </div>
                 <button type="submit" class="mt-6 p-2 bg-amber-900 text-white rounded-md">Save</button>
             </div>
