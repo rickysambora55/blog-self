@@ -69,7 +69,7 @@ class ExperienceController
             Experience::create($validated);
             return redirect()->back()->with('success', 'Experience added successfully.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong while saving the project.');
+            return redirect()->back()->with('error', 'Something went wrong while saving the experience.');
         }
     }
 
@@ -110,7 +110,7 @@ class ExperienceController
 
             return redirect()->back()->with('success', 'Experience updated successfully.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong while updating the project.');
+            return redirect()->back()->with('error', 'Something went wrong while updating the experience.');
         }
     }
 
@@ -126,7 +126,7 @@ class ExperienceController
             $experience->delete();
             return redirect()->back()->with('success', 'Experience deleted successfully.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong while deleting the ex$experience.');
+            return redirect()->back()->with('error', 'Something went wrong while deleting the experience.');
         }
     }
 }

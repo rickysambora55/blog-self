@@ -1,6 +1,7 @@
 <x-admin-layout>
     <div class="flex flex-col px-4">
-        <form>
+        <form method="POST" action="{{ route('social.update') }}">
+            @csrf
             <div class="flex flex-col gap-4">
                 <div class="flex flex-col gap-2">
                     <label for="website">Website</label>
@@ -30,7 +31,8 @@
                         value="{{ isset($profile['instagram']) ? $profile['instagram'] : ''}}"
                         placeholder="https://instagram.com/johndoe" />
                 </div>
-                <button type="submit" class="mt-6 p-2 bg-amber-900 text-white rounded-md">Save</button>
+                <button type="submit"
+                    class="mt-6 p-2 bg-amber-900 text-white rounded-md hover:cursor-pointer">Save</button>
             </div>
         </form>
     </div>
