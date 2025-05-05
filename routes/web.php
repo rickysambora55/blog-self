@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExperienceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectController;
@@ -23,9 +24,15 @@ Route::get('/admin', function () {
 Route::get('/admin/profile', [ProfileController::class, 'profile'])->name('admin-profile');
 Route::get('/admin/social', [ProfileController::class, 'social'])->name('admin-social');
 Route::get('/admin/project', [ProjectController::class, 'index'])->name('admin-project');
+Route::get('/admin/work', [ExperienceController::class, 'work'])->name('admin-work');
+Route::get('/admin/study', [ExperienceController::class, 'study'])->name('admin-study');
 
 
 // API
 Route::post('/api/project', [ProjectController::class, 'store'])->name('project.store');
 Route::patch('/api/project/{project}', [ProjectController::class, 'update'])->name('project.update');
 Route::delete('/api/project/{project}', [ProjectController::class, 'destroy'])->name('project.destroy');
+
+Route::post('/api/experience', [ExperienceController::class, 'store'])->name('experience.store');
+Route::patch('/api/experience/{experience}', [ExperienceController::class, 'update'])->name('experience.update');
+Route::delete('/api/experience/{experience}', [ExperienceController::class, 'destroy'])->name('experience.destroy');

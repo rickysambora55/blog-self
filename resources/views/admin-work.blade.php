@@ -4,8 +4,11 @@
         stiff: true,
         id: null,
         title: '',
-        type: '',
+        type: 1,
+        company: '',
         description: '',
+        start_date: '',
+        end_date: '',
         isEditing: false,
         isDestroy: false,
         modalTitle: 'Default Title',
@@ -17,17 +20,20 @@
         modalIconClass: 'fa-exclamation',
         modalIconColor: 'bg-red-100',
         modalIsForm: false,
-        errors: { title: '', type: '', description: '' },
+        errors: { title: '', description: '', company: '', start_date: '', end_date: '' },
         setItem(item, isEditing = false) {
             this.id = item.id;
             this.title = item.title;
             this.type = item.type;
+            this.company = item.company;
             this.description = item.description;
+            this.start_date = item.start_date ? item.start_date.split('T')[0] : '';
+            this.end_date = item.end_date ? item.end_date.split('T')[0] : '';
             this.isEditing = isEditing;
             this.isDestroy = !isEditing;
             if (isEditing) {
-                this.modalTitle = 'Edit Project';
-                this.modalMessage = 'Edit the project details and save the changes.';
+                this.modalTitle = 'Edit Work Experience';
+                this.modalMessage = 'Edit the work details and save the changes.';
                 this.modalConfirmText = 'Save';
                 this.modalColor = 'primary';
                 this.modalIcon = false;
@@ -35,8 +41,8 @@
                 this.modalIconColor = 'bg-blue-100';
                 this.modalIsForm = true;
             } else if (this.isDestroy) {
-                this.modalTitle = 'Delete Project';
-                this.modalMessage = `Delete project from your portfolio.`;
+                this.modalTitle = 'Delete Work Experience';
+                this.modalMessage = `Delete work from your portfolio.`;
                 this.modalConfirmText = 'Delete';
                 this.modalColor = 'danger';
                 this.modalIcon = true;
@@ -48,13 +54,16 @@
         resetForm() {
             this.id = null;
             this.title = '';
-            this.type = '';
+            this.type = 1;
+            this.company = '';
             this.description = '';
-            this.errors = { title: '', type: '', description: '' };
+            this.start_date = '';
+            this.end_date = '';
+            this.errors = { title: '', description: '', company: '', start_date: '', end_date: ''};
             this.isEditing = false;
             this.isDestroy = false;
-            this.modalTitle = 'Add Project';
-            this.modalMessage = 'Add a new project to your portfolio profile.';
+            this.modalTitle = 'Add Work Experience';
+            this.modalMessage = 'Add a new work to your portfolio profile.';
             this.modalConfirmText = 'Save';
             this.modalColor = 'primary';
             this.modalIcon = false;
@@ -64,17 +73,18 @@
         },
         validate() {
             this.errors.title = this.title.trim() === '' ? 'Title is required' : '';
-            this.errors.type = this.type.trim() === '' ? 'Type is required' : '';
             this.errors.description = this.description.trim() === '' ? 'Description is required' : '';
+            this.errors.company = this.company.trim() === '' ? 'Company is required' : '';
+            this.errors.start_date = this.start_date.trim() === '' ? 'Start date is required' : '';
 
             return !Object.values(this.errors).some(error => error !== '');
         },
     }">
         <form method="POST" :action="isEditing
-        ? '{{ route('project.update', '') }}/' + id
+        ? '{{ route('experience.update', '') }}/' + id
         : (isDestroy
-            ? '{{ route('project.destroy', '') }}/' + id
-            : '{{ route('project.store') }}')" @submit.prevent="if (validate()) $el.submit()">
+            ? '{{ route('experience.destroy', '') }}/' + id
+            : '{{ route('experience.store') }}')" @submit.prevent="if (validate()) $el.submit()">
             @csrf
             <template x-if="isEditing">
                 <input type="hidden" name="_method" value="PATCH" />
@@ -89,30 +99,45 @@
                 <div x-show="isDestroy">
                     <span class="flex flex-col">
                         <span class="font-bold" x-text="title"></span>
-                        Are you sure you want to delete this project? This action is irreversible!
+                        Are you sure you want to delete this work experience? This action is irreversible!
                     </span>
                 </div>
                 <div class="flex flex-col gap-4" x-show="!isDestroy">
+                    <input type="hidden" name="type" :value="type">
                     <div class="flex flex-col gap-2">
                         <label for="title">Title</label>
                         <input type="text" name="title" id="title" aria-label="Title"
-                            class="p-2 border border-gray-300 rounded-md" placeholder="Portfolio Website"
-                            x-model="title" />
+                            class="p-2 border border-gray-300 rounded-md" placeholder="Web Developer" x-model="title" />
                         <span x-show="errors.title" x-text="errors.title" class="text-sm text-red-500"></span>
                     </div>
-                    <div class="flex flex-col gap-2">
-                        <label for="type">Type</label>
-                        <input type="text" name="type" id="type" aria-label="Type"
-                            class="p-2 border border-gray-300 rounded-md" placeholder="Website" x-model="type" />
-                        <span x-show="errors.type" x-text="errors.type" class="text-sm text-red-500"></span>
+                    <div class="flex flex-col gap-2 w-full">
+                        <label for="company">Company</label>
+                        <input type="text" name="company" id="company" aria-label="Company"
+                            class="p-2 border border-gray-300 rounded-md" placeholder="CV Gas" x-model="company" />
+                        <span x-show="errors.company" x-text="errors.company" class="text-sm text-red-500"></span>
                     </div>
                     <div class="flex flex-col gap-2">
                         <label for="description">Description</label>
                         <textarea rows="4" name="description" id="description" aria-label="Description"
                             class="p-2 border border-gray-300 rounded-md"
-                            placeholder="This is a description of the project" x-model="description"></textarea>
+                            placeholder="This is a description of the experience" x-model="description"></textarea>
                         <span x-show="errors.description" x-text="errors.description"
                             class="text-sm text-red-500"></span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-2 justify-between">
+                        <div class="flex flex-col gap-2 w-full">
+                            <label for="start_date">Start Date</label>
+                            <input type="date" name="start_date" id="start_date" aria-label="Start Date"
+                                class="p-2 border border-gray-300 rounded-md" x-model="start_date" />
+                            <span x-show="errors.start_date" x-text="errors.start_date"
+                                class="text-sm text-red-500"></span>
+                        </div>
+                        <div class="flex flex-col gap-2 w-full">
+                            <label for="end_date">End Date</label>
+                            <input type="date" name="end_date" id="end_date" aria-label="End Date"
+                                class="p-2 border border-gray-300 rounded-md" x-model="end_date" />
+                            <span x-show="errors.end_date" x-text="errors.end_date" class="text-sm text-red-500"></span>
+                        </div>
                     </div>
                 </div>
             </x-modal>
@@ -120,11 +145,11 @@
 
         <div class="flex my-4 items-center justify-end">
             <button class="py-2 px-3 hover:cursor-pointer rounded-md primary" @click="resetForm(); modalOn = true">
-                Add Project
+                Add Work Experience
             </button>
         </div>
-        <x-table :items="$projects" :headers="['Title', 'Type', 'Description']"
-            :columnsKey="['title', 'type', 'description']" :actions="['edit', 'delete']">
+        <x-table :items="$works" :headers="['Title', 'Company', 'Description', 'Date']"
+            :columnsKey="['title', 'company', 'description', 'formatted_date']" :actions="['edit', 'delete']">
         </x-table>
     </div>
 </x-admin-layout>

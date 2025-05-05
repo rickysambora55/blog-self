@@ -25,8 +25,8 @@
                             <x-sidebar-item icon="fa-diagram-project" label="Project"
                                 route="{{ route('admin-project') }}" :active="Route::is('admin-project')" />
                             <x-sidebar-item-collapsible icon="fa-building" label="Experience" :items="[
-                            ['route' => route('admin'), 'text' => 'Work', 'active' => Route::is('admin')],
-                            ['route' => route('admin'), 'text' => 'Education', 'active' => Route::is('admin')],
+                            ['route' => route('admin-work'), 'text' => 'Work', 'active' => Route::is('admin-work')],
+                            ['route' => route('admin-study'), 'text' => 'Education', 'active' => Route::is('admin-study')],
                         ]" />
                             <x-sidebar-item icon="fa-hand" label="Social Media" route="{{ route('admin-social') }}"
                                 :active="Route::is('admin-social')" />
@@ -101,6 +101,10 @@
 
     @if (session('success'))
     <x-toast type="success" :message="session('success')" />
+    @endif
+
+    @if (session('error'))
+    <x-toast type="error" :message="session('error')" />
     @endif
 
     @if ($errors->any())
