@@ -11,25 +11,22 @@
                         placeholder="https://example.com" />
                 </div>
                 <div class="flex flex-col gap-2">
-                    <label for="github">Github</label>
+                    <label for="github">Github Username</label>
                     <input type="text" name="github" id="github" aria-label="Github"
                         class="p-2 border border-gray-300 rounded-md"
-                        value="{{ isset($profile['github']) ? $profile['github'] : ''}}"
-                        placeholder="https://github.com/johndoe" />
+                        value="{{ isset($profile['github']) ? $profile['github'] : ''}}" placeholder="johndoe" />
                 </div>
                 <div class="flex flex-col gap-2">
-                    <label for="linkedin">LinkedIn</label>
+                    <label for="linkedin">LinkedIn Username</label>
                     <input type="text" name="linkedin" id="linkedin" aria-label="LinkedIn"
                         class="p-2 border border-gray-300 rounded-md"
-                        value="{{ isset($profile['linkedin']) ? $profile['linkedin'] : ''}}"
-                        placeholder="https://linkedin.com/in/johndoe" />
+                        value="{{ isset($profile['linkedin']) ? $profile['linkedin'] : ''}}" placeholder="johndoe" />
                 </div>
                 <div class="flex flex-col gap-2">
-                    <label for="instagram">Instagram</label>
+                    <label for="instagram">Instagram Username</label>
                     <input type="text" name="instagram" id="instagram" aria-label="Instagram"
                         class="p-2 border border-gray-300 rounded-md"
-                        value="{{ isset($profile['instagram']) ? $profile['instagram'] : ''}}"
-                        placeholder="https://instagram.com/johndoe" />
+                        value="{{ isset($profile['instagram']) ? $profile['instagram'] : ''}}" placeholder="johndoe" />
                 </div>
                 <button type="submit"
                     class="mt-6 p-2 bg-amber-900 text-white rounded-md hover:cursor-pointer">Save</button>

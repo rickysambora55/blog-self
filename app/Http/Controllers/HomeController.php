@@ -20,8 +20,6 @@ class HomeController
                 'name' => 'John Doe',
                 'title' => 'Web Developer',
                 'bio' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.',
-                'filename1' => 'Person_Hero.webp',
-                'filename2' => 'Person_2.webp'
             ];
         }
 

@@ -49,7 +49,17 @@ class ProfileController
             'github' => 'nullable|string|max:255',
             'linkedin' => 'nullable|string|max:255',
             'instagram' => 'nullable|string|max:255',
+            'filename1' => 'sometimes|required|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'filename2' => 'sometimes|required|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
+
+        if ($request->hasFile('filename1')) {
+            $validated['filename1'] = $request->file('filename1')->store('profile', 'public');
+        }
+
+        if ($request->hasFile('filename2')) {
+            $validated['filename2'] =  $request->file('filename2')->store('profile', 'public');
+        }
 
         if ($profile) {
             // Fallback to original values if not provided
@@ -63,6 +73,8 @@ class ProfileController
             $github = $validated['github'] ?? null;
             $linkedin = $validated['linkedin'] ?? null;
             $instagram = $validated['instagram'] ?? null;
+            $filename1 = $validated['filename1'] ?? $profile->filename1;
+            $filename2 = $validated['filename2'] ?? $profile->filename2;
 
             try {
                 $profile->update([
@@ -76,6 +88,8 @@ class ProfileController
                     'github' => $github,
                     'linkedin' => $linkedin,
                     'instagram' => $instagram,
+                    'filename1' => $filename1,
+                    'filename2' => $filename2,
                 ]);
 
                 return redirect()->back()->with('success', 'Profile updated successfully.');

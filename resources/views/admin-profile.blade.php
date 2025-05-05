@@ -1,6 +1,6 @@
 <x-admin-layout>
     <div class="flex flex-col px-4">
-        <form method="POST" action="{{ route('profile.update') }}">
+        <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
             @csrf
             <div class="flex flex-col gap-4">
                 <div class="flex flex-col gap-2">
@@ -39,6 +39,38 @@
                     <input type="tel" name="phone" id="phone" aria-label="Phone"
                         class="p-2 border border-gray-300 rounded-md"
                         value="{{ isset($profile['phone']) ? $profile['phone'] : ''}}" placeholder="081234567890" />
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-2 justify-evenly w-full">
+                    <div>
+                        @if(!empty($profile['filename1']))
+                        <div>
+                            <label class="font-semibold">Current Landing Image:</label>
+                            <img src="{{ asset('/storage/' . $profile['filename1']) }}"
+                                class="w-auto h-48 rounded-md mt-2">
+                        </div>
+                        @endif
+                        <div class="flex flex-col gap-2 w-full">
+                            <label for="filename1">Landing Image</label>
+                            <input type="file" name="filename1" id="filename1" accept="image/*"
+                                class="p-2 border border-gray-300 rounded-md hover:cursor-pointer" />
+                        </div>
+                    </div>
+
+                    <div>
+                        @if(!empty($profile['filename2']))
+                        <div>
+                            <label class="font-semibold">Current Bio Image:</label>
+                            <img src="{{ asset('/storage/' . $profile['filename2']) }}"
+                                class="w-auto h-48 rounded-md mt-2">
+                        </div>
+                        @endif
+                        <div class="flex flex-col gap-2 w-full">
+                            <label for="filename2">Bio Image</label>
+                            <input type="file" name="filename2" id="filename2" accept="image/*"
+                                class="p-2 border border-gray-300 rounded-md hover:cursor-pointer" />
+                        </div>
+                    </div>
                 </div>
                 <button type="submit"
                     class="mt-6 p-2 bg-amber-900 text-white rounded-md hover:cursor-pointer">Save</button>

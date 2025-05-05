@@ -7,11 +7,14 @@
             <span class="text-6xl font-extrabold">{{$profile['name']}}</span>
             <span class="text-xl">I'am a <span class="font-bold">{{$profile['title']}}</span></span>
         </div>
-        @if(isset($profile['filename1']))
         <div class="flex w-full h-2/3 md:h-full items-center justify-end">
-            <img src="{{url('/img/profiles/' . $profile['filename1'])}}"
-                class="h-auto max-h-full aspect-auto object-top" alt="User Picture" />
+            @if(isset($profile['filename1']) && !empty($profile['filename1']))
+            <img src="{{url('/storage/' . $profile['filename1'])}}" class="h-auto max-h-full aspect-auto object-top"
+                alt="User Picture" />
+            @else
+            <img src="{{url('/img/profiles/Person_Hero.webp')}}" class="h-auto max-h-full aspect-auto object-top"
+                alt="User Picture" />
+            @endif
         </div>
-        @endif
     </div>
 </section>

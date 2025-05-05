@@ -2,15 +2,18 @@
 
 <x-section-wrapper>
     <x-slot:section>intro</x-slot:section>
-    @if(isset($profile['filename2']))
     <div class="w-full max-w-1/3">
         <div class="flex w-full h-2/3 md:h-full items-center justify-start">
-            <img src="{{url('/img/profiles/' . $profile['filename2'])}}"
-                class="h-auto max-h-full aspect-auto object-top" alt="User Picture" />
+            @if(isset($profile['filename2']) && !empty($profile['filename2']))
+            <img src="{{url('/storage/' . $profile['filename2'])}}" class="h-auto max-h-full aspect-auto object-top"
+                alt="User Picture" />
+            @else
+            <img src="{{url('/img/profiles/Person_2.webp')}}" class="h-auto max-h-full aspect-auto object-top"
+                alt="User Picture" />
+            @endif
         </div>
     </div>
-    @endif
-    <div class="w-full  {{ empty($profile['filename2']) ? 'justify-center flex flex-col items-center' : '' }}">
+    <div class="w-full">
         <x-section-title>About Me</x-section-title>
 
         <div class="text-justify">
