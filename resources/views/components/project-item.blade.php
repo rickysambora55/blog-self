@@ -5,8 +5,12 @@
         class="w-70 2xl:w-84 h-84 p-4 rounded-xl overflow-hidden group border border-gray-100 shadow-lg cursor-pointer hover:shadow-xl hover:shadow-amber-200 transition flex flex-col">
 
         <!-- Image -->
+        @if (isset($images[0]))
         <img class="w-full rounded-t-lg h-36 object-cover" src="/img/projects/{{$images[0]['filename']}}"
             alt="{{$images[0]['alt']}}">
+        @else
+        <div class="w-full rounded-t-lg h-36 object-cover bg-gray-300" aria-label="No Image"></div>
+        @endif
 
         <!-- Content Wrapper -->
         <div class="flex flex-col flex-1 px-2">
