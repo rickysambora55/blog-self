@@ -29,6 +29,9 @@ Route::get('/admin/study', [ExperienceController::class, 'study'])->name('admin-
 
 
 // API
+Route::post('/api/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::post('/api/social', [ProfileController::class, 'update'])->name('social.update');
+
 Route::post('/api/project', [ProjectController::class, 'store'])->name('project.store');
 Route::patch('/api/project/{project}', [ProjectController::class, 'update'])->name('project.update');
 Route::delete('/api/project/{project}', [ProjectController::class, 'destroy'])->name('project.destroy');

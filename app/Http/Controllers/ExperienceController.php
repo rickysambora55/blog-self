@@ -82,11 +82,11 @@ class ExperienceController
         }
 
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'type' => 'required|boolean',
-            'company' => 'required|string|max:255',
-            'description' => 'required|string',
-            'start_date' => 'required|date',
+            'title' => 'sometimes|string|max:255',
+            'type' => 'sometimes|boolean',
+            'company' => 'sometimes|string|max:255',
+            'description' => 'sometimes|string',
+            'start_date' => 'sometimes|date',
             'end_date' => 'nullable|date',
         ]);
 
