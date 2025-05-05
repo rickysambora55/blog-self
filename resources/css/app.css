@@ -36,6 +36,15 @@ html {
     background-color: oklch(70.7% 0.165 254.624);
 }
 
+.danger {
+    background-color: oklch(63.7% 0.237 25.331);
+    color: white;
+}
+
+.danger:hover {
+    background-color: oklch(70.4% 0.191 22.216);
+}
+
 .sidebar-scroll::-webkit-scrollbar {
     width: 8px;
 }

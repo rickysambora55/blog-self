@@ -1,95 +1,31 @@
 <?php
 
-use App\Models\Project;
-use App\Models\Profile;
-use App\Models\Experience;
 use Illuminate\Support\Facades\Route;
-use Carbon\Carbon;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProfileController;
 
-Route::get('/', function () {
-    $projects = Project::latest()->take(8)->get();
-    $profile = Profile::first();
+// Home page
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-    // If profile is not set, send default profile
-    if (!$profile) {
-        $profile = [
-            'name' => 'John Doe',
-            'title' => 'Web Developer',
-            'bio' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.',
-            'filename1' => 'Person_Hero.webp',
-            'filename2' => 'Person_2.webp'
-        ];
-    }
+// Project page
+Route::get('/project/{project:slug}', [ProjectController::class, 'show'])->name('project.show');
 
-    $experience = Experience::all()
-        ->map(function ($exp) {
-            $start = Carbon::parse($exp->start_date);
-            $end = $exp->end_date ? Carbon::parse($exp->end_date) : now();
-
-            return [
-                'title' => $exp->title,
-                'type' => $exp->type,
-                'company' => $exp->company,
-                'description' => $exp->description,
-                'start_date' => $start,
-                'end_date' => $end,
-                'formatted_date' => $start->translatedFormat('d M Y') . ' - ' .
-                    ($exp->end_date ? $end->translatedFormat('d M Y') : 'Now') .
-                    ' (' . $start->diffForHumans($end, true) . ')',
-            ];
-        })
-        ->sortByDesc(fn($exp) => $exp['end_date']->timestamp);
-
-
-    [$works, $studies] = $experience->partition(function ($exp) {
-        return $exp['type'];
-    });
-
-    return view('home', [
-        'projects' => $projects,
-        'profile' => $profile,
-        'works' => $works,
-        'studies' => $studies
-    ]);
-});
-
-Route::get('/project/{project:slug}', function (Project $project) {
-
-    return view('project', ['project' => $project]);
-});
-
+// Login page
 Route::get('/login', function () {
     return view('login');
 });
 
+// Dashboard pages
 Route::get('/admin', function () {
     return view('admin');
 })->name('admin');
+Route::get('/admin/profile', [ProfileController::class, 'profile'])->name('admin-profile');
+Route::get('/admin/social', [ProfileController::class, 'social'])->name('admin-social');
+Route::get('/admin/project', [ProjectController::class, 'index'])->name('admin-project');
 
-Route::get('/admin/profile', function () {
-    $profile = Profile::first();
 
-    // If profile is not set, send default profile
-    if (!$profile) {
-        $profile = [];
-    }
-
-    return view('admin-profile', ['profile' => $profile]);
-})->name('admin-profile');
-
-Route::get('/admin/social', function () {
-    $profile = Profile::first();
-
-    // If profile is not set, send default profile
-    if (!$profile) {
-        $profile = [];
-    }
-
-    return view('admin-social', ['profile' => $profile]);
-})->name('admin-social');
-
-Route::get('/admin/project', function () {
-    $projects = Project::all();
-
-    return view('admin-project', ['projects' => $projects]);
-})->name('admin-project');
+// API
+Route::post('/api/project', [ProjectController::class, 'store'])->name('project.store');
+Route::patch('/api/project/{project}', [ProjectController::class, 'update'])->name('project.update');
+Route::delete('/api/project/{project}', [ProjectController::class, 'destroy'])->name('project.destroy');

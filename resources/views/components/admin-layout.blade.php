@@ -99,4 +99,12 @@
             <div x-show="sidebarOn" class="bg-gray-900/50 sm:hidden fixed inset-0 z-60"></div>
     </body>
 
+    @if (session('success'))
+    <x-toast type="success" :message="session('success')" />
+    @endif
+
+    @if ($errors->any())
+    <x-toast type="error" :message="$errors->first()" />
+    @endif
+
 </html>
