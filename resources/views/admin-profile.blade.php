@@ -40,9 +40,27 @@
                         class="p-2 border border-gray-300 rounded-md"
                         value="{{ isset($profile['phone']) ? $profile['phone'] : ''}}" placeholder="081234567890" />
                 </div>
+                @php
+                $selectedTechIds = $profile->technologies->pluck('id')->toArray();
+                @endphp
+
+                <div class="mb-4">
+                    <span>Skills</span>
+                    <div x-data="{
+                        selected: {{ json_encode($selectedTechIds) }},
+                    }" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        <template x-for="tech in {{ json_encode($technologies) }}" :key="tech.id">
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" :value="tech.id" x-model="selected" name="technologies[]"
+                                    class="rounded border-gray-300">
+                                <span x-text="tech.name"></span>
+                            </label>
+                        </template>
+                    </div>
+                </div>
 
                 <div class="flex flex-col sm:flex-row gap-2 justify-evenly w-full">
-                    <div>
+                    <div class="w-full">
                         @if(!empty($profile['filename1']))
                         <div>
                             <label class="font-semibold">Current Landing Image:</label>
@@ -57,7 +75,7 @@
                         </div>
                     </div>
 
-                    <div>
+                    <div class="w-full">
                         @if(!empty($profile['filename2']))
                         <div>
                             <label class="font-semibold">Current Bio Image:</label>

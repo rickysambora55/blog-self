@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
+use App\Models\Technology;
 use Illuminate\Http\Request;
 
 class ProfileController
@@ -22,8 +23,10 @@ class ProfileController
 
     public function profile()
     {
+        $technologies = Technology::all();
         return view('admin-profile', [
-            'profile' => $this->getProfile()
+            'profile' => $this->getProfile(),
+            'technologies' => $technologies
         ]);
     }
 
@@ -51,6 +54,8 @@ class ProfileController
             'instagram' => 'nullable|string|max:255',
             'filename1' => 'sometimes|required|image|mimes:jpeg,png,jpg,webp|max:2048',
             'filename2' => 'sometimes|required|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'technologies' => 'nullable|array',
+            'technologies.*' => 'exists:technologies,id',
         ]);
 
         if ($request->hasFile('filename1')) {
@@ -91,6 +96,11 @@ class ProfileController
                     'filename1' => $filename1,
                     'filename2' => $filename2,
                 ]);
+
+                if ($request->has('technologies')) {
+                    $profile->technologies()->sync($validated['technologies']);
+                }
+                $profile->technologies()->sync($validated['technologies'] ?? []);
 
                 return redirect()->back()->with('success', 'Profile updated successfully.');
             } catch (\Exception $e) {

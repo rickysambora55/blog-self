@@ -9,7 +9,7 @@
 
         <div class="w-full flex flex-wrap justify-center gap-10 mt-6">
             @foreach ($profile['technologies'] as $skill)
-            <x-skills-item src="/img/tech/{{$skill['filename']}}">{{$skill['name']}}</x-skills-item>
+            <x-skills-item src="/storage/{{$skill['filename']}}">{{$skill['name']}}</x-skills-item>
             @endforeach
         </div>
     </div>

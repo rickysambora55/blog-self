@@ -70,7 +70,7 @@
                                         class="inline-flex w-full cursor-pointer justify-center items-center gap-x-1.5"
                                         id="menu-button" @click="isOn = !isOn" :aria-expanded="isOn"
                                         :aria-haspopup="isOn">
-                                        Username
+                                        Admin
                                         <i class="fa-solid fa-chevron-down transition-all duration-200 text-xs"
                                             :class="{'-rotate-180': isOn, 'rotate-0': !isOn }"></i>
                                     </button>
