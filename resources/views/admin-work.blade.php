@@ -84,7 +84,8 @@
         ? '{{ route('experience.update', '') }}/' + id
         : (isDestroy
             ? '{{ route('experience.destroy', '') }}/' + id
-            : '{{ route('experience.store') }}')" @submit.prevent="if (validate()) $el.submit()">
+            : '{{ route('experience.store') }}')"
+            @submit.prevent="if (!isDestroy && !validate()) return; $el.submit()">
             @csrf
             <template x-if="isEditing">
                 <input type="hidden" name="_method" value="PATCH" />

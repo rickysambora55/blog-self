@@ -2,6 +2,7 @@
 'items' => [],
 'headers' => [],
 'columnsKey' => [],
+'imagePath' => '',
 'actions' => [],
 ])
 
@@ -24,7 +25,17 @@
             <tr class="odd:bg-white even:bg-amber-50 border-b border-gray-200">
                 @foreach ($columnsKey as $column)
                 <td class="px-6 py-4">
-                    {{ $item[$column] }}
+                    @php
+                    $value = $item[$column];
+                    $isImage = is_string($value) && (Str::startsWith($value, ['http', '/']) || Str::contains($value,
+                    ['.jpg', '.jpeg', '.png', '.webp', '.gif']));
+                    @endphp
+
+                    @if ($isImage)
+                    <img src="{{ $imagePath.$value }}" alt="Image" class="w-12 h-12 object-cover rounded">
+                    @else
+                    {{ $value }}
+                    @endif
                 </td>
                 @endforeach
                 @if (!empty($actions))

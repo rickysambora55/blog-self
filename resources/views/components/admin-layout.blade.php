@@ -31,7 +31,8 @@
                             <x-sidebar-item icon="fa-hand" label="Social Media" route="{{ route('admin-social') }}"
                                 :active="Route::is('admin-social')" />
                             <span class="font-medium mt-4">Database</span>
-                            <x-sidebar-item icon="fa-cubes" label="Technology" route="{{ route('admin') }}" />
+                            <x-sidebar-item icon="fa-cubes" label="Technology" route="{{ route('admin-technology') }}"
+                                :active="Route::is('admin-technology')" />
                         </ul>
                     </div>
                 </aside>
