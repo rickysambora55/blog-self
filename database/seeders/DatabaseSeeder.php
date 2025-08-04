@@ -29,7 +29,8 @@ class DatabaseSeeder extends Seeder
             Technology::all()->random(rand($maxTechnologies / 2, $maxTechnologies))->pluck('id')->toArray()
         );
 
-        $projects = Project::factory(10)->has(ProjectImage::factory(1), 'images')->create();
+        // $projects = Project::factory(10)->has(ProjectImage::factory(1), 'images')->create();
+        $projects = Project::factory(10)->create();
 
         foreach ($projects as $project) {
             $project->technologies()->attach(

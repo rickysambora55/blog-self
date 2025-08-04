@@ -6,10 +6,12 @@
 
         <!-- Image -->
         @if (isset($images[0]))
-        <img class="w-full rounded-t-lg h-36 object-cover" src="/img/projects/{{$images[0]['filename']}}"
+        <img class="w-full rounded-t-lg h-36 object-cover" src="/storage/{{$images[0]['filename']}}"
             alt="{{$images[0]['alt']}}">
         @else
-        <div class="w-full rounded-t-lg h-36 object-cover bg-gray-300" aria-label="No Image"></div>
+        <div class="w-full rounded-t-lg h-36 object-cover bg-gray-300 flex items-center justify-center">
+            <span class="text-gray-600 text-sm font-medium">No Image</span>
+        </div>
         @endif
 
         <!-- Content Wrapper -->

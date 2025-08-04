@@ -6,6 +6,7 @@
         title: '',
         type: '',
         description: '',
+        filenames: [],
         isEditing: false,
         isDestroy: false,
         modalTitle: 'Default Title',
@@ -23,6 +24,7 @@
             this.title = item.title;
             this.type = item.type;
             this.description = item.description;
+            this.filenames = item.images;
             this.isEditing = isEditing;
             this.isDestroy = !isEditing;
             if (isEditing) {
@@ -50,7 +52,8 @@
             this.title = '';
             this.type = '';
             this.description = '';
-            this.errors = { title: '', type: '', description: '' };
+            this.filenames = [];
+            this.errors = { title: '', type: '', description: '', filenames: [] };
             this.isEditing = false;
             this.isDestroy = false;
             this.modalTitle = 'Add Project';
@@ -63,18 +66,21 @@
             this.modalIsForm = true;
         },
         validate() {
-            this.errors.title = this.title.trim() === '' ? 'Title is required' : '';
-            this.errors.type = this.type.trim() === '' ? 'Type is required' : '';
-            this.errors.description = this.description.trim() === '' ? 'Description is required' : '';
+            this.errors.title = (this.title || '').trim() === '' ? 'Title is required' : '';
+            this.errors.type = (this.type || '').trim() === '' ? 'Type is required' : '';
+            this.errors.description = (this.description || '').trim() === '' ? 'Description is required' : '';
+            this.errors.filenames = Array.isArray(this.filenames) && this.filenames.length > 0
+                ? ''
+                : 'Images are required';
 
             return !Object.values(this.errors).some(error => error !== '');
-        },
+        }
     }">
-        <form method="POST" :action="isEditing
+        <form method="POST" enctype="multipart/form-data" :action="isEditing
         ? '{{ route('project.update', '') }}/' + id
         : (isDestroy
             ? '{{ route('project.destroy', '') }}/' + id
-            : '{{ route('project.store') }}')" @submit.prevent="if (validate()) $el.submit()">
+            : '{{ route('project.store') }}')" @submit.prevent="if (!isDestroy && !validate()) return; $el.submit()">
             @csrf
             <template x-if="isEditing">
                 <input type="hidden" name="_method" value="PATCH" />
@@ -93,26 +99,59 @@
                     </span>
                 </div>
                 <div class="flex flex-col gap-4" x-show="!isDestroy">
-                    <div class="flex flex-col gap-2">
-                        <label for="title">Title</label>
-                        <input type="text" name="title" id="title" aria-label="Title"
-                            class="p-2 border border-gray-300 rounded-md" placeholder="Portfolio Website"
-                            x-model="title" />
-                        <span x-show="errors.title" x-text="errors.title" class="text-sm text-red-500"></span>
+                    <div class="flex slef flex-wrap gap-2">
+                        <template x-for="(image, index) in filenames" :key="index">
+                            <img :src="typeof image === 'string' || image.filename ? '/storage/' + (image.filename || image) : URL.createObjectURL(image)"
+                                :alt="image.alt || 'Project Image'" class="rounded-md w-32 h-32 object-cover" />
+                        </template>
                     </div>
-                    <div class="flex flex-col gap-2">
-                        <label for="type">Type</label>
-                        <input type="text" name="type" id="type" aria-label="Type"
-                            class="p-2 border border-gray-300 rounded-md" placeholder="Website" x-model="type" />
-                        <span x-show="errors.type" x-text="errors.type" class="text-sm text-red-500"></span>
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        <label for="description">Description</label>
-                        <textarea rows="4" name="description" id="description" aria-label="Description"
-                            class="p-2 border border-gray-300 rounded-md"
-                            placeholder="This is a description of the project" x-model="description"></textarea>
-                        <span x-show="errors.description" x-text="errors.description"
-                            class="text-sm text-red-500"></span>
+                    <div class="flex flex-col gap-4 w-full">
+                        <div class="flex flex-col gap-2">
+                            <label for="title">Title</label>
+                            <input type="text" name="title" id="title" aria-label="Title"
+                                class="p-2 border border-gray-300 rounded-md" placeholder="Portfolio Website"
+                                x-model="title" />
+                            <span x-show="errors.title" x-text="errors.title" class="text-sm text-red-500"></span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label for="type">Type</label>
+                            <input type="text" name="type" id="type" aria-label="Type"
+                                class="p-2 border border-gray-300 rounded-md" placeholder="Website" x-model="type" />
+                            <span x-show="errors.type" x-text="errors.type" class="text-sm text-red-500"></span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label for="description">Description</label>
+                            <textarea rows="4" name="description" id="description" aria-label="Description"
+                                class="p-2 border border-gray-300 rounded-md"
+                                placeholder="This is a description of the project" x-model="description"></textarea>
+                            <span x-show="errors.description" x-text="errors.description"
+                                class="text-sm text-red-500"></span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label for="filenames">Images</label>
+                            <input type="file" name="filenames[]" id="filenames" aria-label="Images"
+                                class="p-2 border border-gray-300 rounded-md" multiple x-ref="fileInput" @change="
+                                    const maxSize = 2 * 1024 * 1024;
+                                    const newFiles = Array.from($refs.fileInput.files);
+
+                                    const oversized = newFiles.filter(file => file.size > maxSize);
+                                    if (oversized.length > 0) {
+                                        alert('Each file must be under 2 MB.');
+                                        $refs.fileInput.value = null;
+                                        return;
+                                    }
+
+                                    if (newFiles.length > 5) {
+                                        alert('You can only upload up to 5 images.');
+                                        $refs.fileInput.value = null;
+                                        return;
+                                    }
+
+                                    filenames = [...filenames, ...newFiles];
+                                " />
+                            <span x-show="errors.filenames" x-text="errors.filenames"
+                                class="text-sm text-red-500"></span>
+                        </div>
                     </div>
                 </div>
             </x-modal>

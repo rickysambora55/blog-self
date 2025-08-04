@@ -21,16 +21,6 @@ class ProjectImageFactory extends Factory
         static $used = [];
         $images = [
             'project.png',
-            'project - Copy.png',
-            'project - Copy (2).png',
-            'project - Copy (3).png',
-            'project - Copy (4).png',
-            'project - Copy (5).png',
-            'project - Copy (6).png',
-            'project - Copy (7).png',
-            'project - Copy (8).png',
-            'project - Copy (9).png',
-            'project - Copy (10).png',
         ];
 
         // filter out used filenames

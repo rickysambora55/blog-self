@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Project page
+Route::get('/project-list', [ProjectController::class, 'projects'])->name('projects');
 Route::get('/project/{project:slug}', [ProjectController::class, 'show'])->name('project.show');
 
 // Login page
