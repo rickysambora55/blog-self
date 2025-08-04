@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TechnologyController;
+use App\Http\Controllers\DashboardController;
 
 // Home page
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -20,9 +21,7 @@ Route::get('/login', function () {
 });
 
 // Dashboard pages
-Route::get('/admin', function () {
-    return view('admin');
-})->name('admin');
+Route::get('/admin', [DashboardController::class, 'index'])->name('admin');
 Route::get('/admin/profile', [ProfileController::class, 'profile'])->name('admin-profile');
 Route::get('/admin/social', [ProfileController::class, 'social'])->name('admin-social');
 Route::get('/admin/project', [ProjectController::class, 'index'])->name('admin-project');
