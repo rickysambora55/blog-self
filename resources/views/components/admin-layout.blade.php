@@ -86,7 +86,14 @@
                                     x-transition:leave-start="opacity-100 scale-100"
                                     x-transition:leave-end="opacity-0 scale-95">
                                     <div class="py-1" role="none" x-data="{ isHover: false }">
-                                        <x-dropdown-item href="#">Logout</x-dropdown-item>
+                                        <x-dropdown-item href="#" @click.prevent="$refs.logoutForm.submit()">
+                                            Logout
+                                        </x-dropdown-item>
+
+                                        <form x-ref="logoutForm" method="POST" action="{{ route('logout') }}"
+                                            class="hidden">
+                                            @csrf
+                                        </form>
                                     </div>
                                 </div>
                             </div>
