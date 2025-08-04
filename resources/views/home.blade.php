@@ -15,7 +15,7 @@
         @endif
         @if(isset($projects) && $projects->isNotEmpty())
         <x-projects :projects="$projects"></x-projects>
-        <a href="/project-list" class="mx-auto mb-12 btn btn-primary">View All Projects</a>
+        <a href="/project-list" class="mx-auto mb-12 btn btn-primary hover:text-amber-600">View All Projects</a>
         @endif
         {{-- <x-contact></x-contact> --}}
         <x-footer :profile="$profile"></x-footer>

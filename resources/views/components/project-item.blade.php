@@ -33,7 +33,7 @@
             <!-- Tech Stack -->
             <div class="flex gap-3">
                 @foreach ($technologies as $tech)
-                <x-tech-item src="/img/tech/{{$tech['filename']}}">{{$tech['name']}}</x-tech-item>
+                <x-tech-item src="/storage/{{$tech['filename']}}">{{$tech['name']}}</x-tech-item>
                 @endforeach
             </div>
         </div>

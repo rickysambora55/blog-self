@@ -72,12 +72,12 @@ class ProfileController
             $email = $validated['email'] ?? $profile->email;
             $title = $validated['title'] ?? $profile->title;
             $bio = $validated['bio'] ?? $profile->bio;
-            $address = $validated['address'] ?? null;
-            $phone = $validated['phone'] ?? null;
-            $website = $validated['website'] ?? null;
-            $github = $validated['github'] ?? null;
-            $linkedin = $validated['linkedin'] ?? null;
-            $instagram = $validated['instagram'] ?? null;
+            $address = $validated['address'] ?? $profile->address ?? null;
+            $phone = $validated['phone'] ?? $profile->phone ?? null;
+            $website = $validated['website'] ?? $profile->website ?? null;
+            $github = $validated['github'] ?? $profile->github ?? null;
+            $linkedin = $validated['linkedin'] ?? $profile->linkedin ?? null;
+            $instagram = $validated['instagram'] ?? $profile->instagram ?? null;
             $filename1 = $validated['filename1'] ?? $profile->filename1;
             $filename2 = $validated['filename2'] ?? $profile->filename2;
 
@@ -98,9 +98,8 @@ class ProfileController
                 ]);
 
                 if ($request->has('technologies')) {
-                    $profile->technologies()->sync($validated['technologies']);
+                    $profile->technologies()->sync($validated['technologies'] ?? []);
                 }
-                $profile->technologies()->sync($validated['technologies'] ?? []);
 
                 return redirect()->back()->with('success', 'Profile updated successfully.');
             } catch (\Exception $e) {
